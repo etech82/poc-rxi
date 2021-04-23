@@ -1,0 +1,157 @@
+# RXJ
+
+## Checkout Microservices-Data.jdl
+## jhipster import-jdl Microservices-Data.jdl
+
+# IMPLEMENTAZIONE Architettura a microservizi
+
+## START JDL Docker
+> $ docker run --rm -it -p 18080:80 jhipster/jdl-studio
+
+## INSTALLAZIONE Identity Server "JHipster UAA (per l'autenticazione OAuth2 microservizio)"
+> $ cd C:\DEV\Rx-JHR1\uaa <br>
+> $ jhipster <br>
+> $ npm install <br>
+> $ npm audit fix <br>
+> $ mvnw -Pdev,webpack <br>
+oppure <br>
+> $ mvnw && npm start
+
+## CONTROLLO ISTALLAZIONE
+	
+Avviamo i servizi necessari:
+### 1 - JHipster-registry
+> $ cd .\uaa\src\main\docker> <br>
+> $ aci
+
+### 2 - Message Broker Kafka
+> $ cd .\uaa\src\main\docker> <br>
+> $ docker-compose -f kafka.yml up -d
+
+Poiché il servizio UAA generato non ha un'interfaccia utente, è necessario
+utilizzare le chiamate API dirette per verificarne il funzionamento.
+Ci sono due funzionalità che dobbiamo accertarci che funzionino prima di usarlo:<br>
+1 - generazione di token OAuth2<br>
+2 - recupero dell'account.
+
+Otteniamo un nuovo token dall'endpoint OAuth del nostro UAA
+> $ curl -X POST --data "username=user&password=user&grant_type=password&scope=openid" http://web_app:changeit@localhost:9999/oauth/token <br>
+
+Ora possiamo utilizzare il access_token restituito  per ottenere informazioni per l'account associato
+utilizzando la  risorsa dell'account 
+> $ curl -H "Authorization: Bearer eyJhbG..." http://localhost:9999/api/account <br>
+
+## INSTALLAZIONE GATEWAY
+Ora che siamo sicuri che il nostro servizio UAA e il registry funzionino,
+creiamo un ecosistema con cui interagire.<br>
+Alla fine, avremo aggiunto:<br>
+- Un front-end Angular<br>
+- Un back-end di microservizi<br>
+- Un gateway API<br>
+
+## Generate CRUD Microservice for Entity
+> jhipster import-jdl app.jdl
+
+Update version dependency
+> npm cache clean --force
+> npm update
+> npm install --save request
+> npm install --save request-promise-native
+> npm install chokidar
+>
+
+## PRE-START
+> cd uaa
+> docker-compose -f src/main/docker/jhipster-registry.yaml up -d
+> docker-compose -f src/main/docker/kafka.yaml up -d
+
+> cd notification
+> docker-compose -f src/main/docker/mongodb.yaml up -d
+
+## START FOR DEV
+> cd uaa && mvnw
+> cd invoice && mvnw
+> cd notification && mvnw
+> cd store && mvnw && npm start
+
+$ mkdir docker-compose && cd docker-compose
+$ jhipster docker-compose
+
+Note: In the latest JHipster versions we migrated to using Jib for creating Docker images. This is a huge improvement over the Docker Maven plugin that we were using, as a result the command to create an image has changed to ./gradlew -Pprod bootWar jibDockerBuild.
+Docker Compose configuration generated with missing images!
+To generate the missing Docker image(s), please run:
+
+## DOCKER BUILD IMAGES - PROD
+> mvnw -ntp -Pprod verify jib:dockerBuild in $PATH/invoice
+> mvnw -ntp -Pprod verify jib:dockerBuild in $PATH/notification
+> mvnw -ntp -Pprod verify jib:dockerBuild in $PATH/store
+
+## START CONTAINER
+> invoice>docker-compose -f src/main/docker/app.yml up -d
+> notification>docker-compose -f src/main/docker/app.yml up -d
+> store>docker-compose -f src/main/docker/app.yml up -d
+
+> docker-compose up -d
+> docker-compose logs -f
+> docker-compose down
+
+You can see the JHipster registry in action at http://localhost:8761/
+And finally the JHipster console at http://localhost:5601/
+
+> git init <br>
+> git add --all <br>
+> git commit -am "generated online store application" <br>
+
+Docker JIB:build
+DockerHUB Pro tip
+
+You can push a new image to this repository using the CLI
+Per dockerizzare l'applicazione, eseguire:
+> mvnw -Pdev verify jib:dockerBuild
+
+> docker tag local-image:tagname new-repo:tagname
+> docker push new-repo:tagname
+
+> docker push agio/platmi:tagname
+
+Make sure to change tagname with your desired image repository tag.
+
+
+
+/* Scheduler 
+
+//User
+relationship ManyToOne {
+	Contributor{owner(login) required} to User ,  
+    Plan{owner(login) required} to User,
+    Event{owner required} to Contributor
+}
+//Contributors
+entity Contributor {
+	name String required minlength(5),
+    hash String required minlength(5) maxlength(32)
+}
+//Plans
+entity Plan {
+	name String required minlength(3)
+}
+
+//need to add owner of event
+relationship OneToMany {
+	Plan{events} to Event{plan required}
+}
+relationship ManyToMany {
+	Event{contributors} to Contributor{events}
+}
+
+//Events
+entity Event {
+	name String required minlength(3),
+    start ZonedDateTime,
+    stop ZonedDateTime
+}
+
+service Plan, Event with serviceClass
+paginate Plan, Event with pagination
+microservice Plan, Event with calendarService
+*/

@@ -1,0 +1,18 @@
+apiVersion: skaffold/v1
+kind: Config
+build:
+  artifacts:
+    - image: rxi/gateway
+      context: ../gateway
+      jib: {}
+    - image: rxi/inventory
+      context: ../inventory
+      jib: {}
+    - image: rxi/purchasing
+      context: ../purchasing
+      jib: {}
+  tagPolicy:
+    envTemplate:
+      template: "{{.IMAGE_NAME}}:latest"
+deploy:
+  kustomize: {}

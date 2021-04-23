@@ -1,0 +1,10 @@
+{
+  "generator-jhipster": {
+    "appsFolders": ["gateway", "inventory", "purchasing"],
+    "directoryPath": "../",
+    "gatewayType": "SpringCloudGateway",
+    "monitoring": "no",
+    "serviceDiscoveryType": "eureka",
+    "jwtSecretKey": "MmJkM2JmZWI4MzAzN2U5NmQ2Yjg0YjQ0M2NmMzZkODU1YjgwNmEwODhkOTQ5YWM2OWRkZjIxYzk1NmQ2MDE1MzdiY2RjZTJmNGM1YzZmM2I5YTk0NzkwYTAyNjI2OGIwNDVmNw=="
+  }
+}

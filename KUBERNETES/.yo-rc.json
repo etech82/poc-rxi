@@ -1,0 +1,16 @@
+{
+  "generator-jhipster": {
+    "appsFolders": ["gateway", "inventory", "purchasing"],
+    "directoryPath": "../",
+    "serviceDiscoveryType": "eureka",
+    "jwtSecretKey": "YmMxYjU2YTg2MjZlZDI0OGFjOTdhZDMwOGU5NzI2MTk2YjI5YTdmZTM1ZTY5NThlOTdjNmI0YjFjYTNjMjYzZDQ0MWQ1YmQwYWU4NTc1YjA0ZjA1ZjkzZTAzOTRjZmFjZGFkMQ==",
+    "dockerRepositoryName": "rxi",
+    "dockerPushCommand": "docker push",
+    "kubernetesNamespace": "default",
+    "kubernetesServiceType": "LoadBalancer",
+    "kubernetesUseDynamicStorage": false,
+    "ingressDomain": "",
+    "monitoring": "prometheus",
+    "istio": false
+  }
+}

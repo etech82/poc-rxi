@@ -1,0 +1,205 @@
+application {
+	config {
+		baseName gateway,
+		applicationType gateway,
+        packageName com.walgreens.rxi.gateway.dashboard,
+        serviceDiscoveryType eureka,
+        authenticationType oauth2,
+        prodDatabaseType mysql,
+        devDatabaseType mysql,
+        cacheProvider hazelcast,
+        buildTool maven,
+        clientFramework angular,
+        testFrameworks [protractor],
+        languages [en,it]
+        }
+	entities *
+}
+
+application {
+  config {
+    baseName inventory,
+    applicationType microservice,
+    packageName com.walgreens.rxi.inventory,
+    serviceDiscoveryType eureka,
+    authenticationType oauth2,
+    prodDatabaseType mysql,
+    devDatabaseType mysql,
+    buildTool maven,
+    serverPort 8081,
+    messageBroker kafka,
+    languages [en,it]
+  }
+  entities Product, ProductCode, Packaging, Category, Catalog
+}
+
+application {
+  config {
+    baseName purchasing,
+    applicationType microservice,
+    packageName com.walgreens.rxi.purchasing,
+    serviceDiscoveryType eureka,
+    authenticationType oauth2,
+    prodDatabaseType mysql,
+    devDatabaseType mysql,
+    buildTool maven,
+    serverPort 8082,
+    messageBroker kafka,
+    languages [en,it]
+  }
+  entities LocationOrder, OrderItem, Location, Address
+}
+
+application {
+	config {
+    	baseName notification,
+        applicationType microservice,
+        packageName  com.walgreens.rxi.notification,
+        serviceDiscoveryType eureka,
+        authenticationType oauth2,
+        databaseType mongodb,
+        prodDatabaseType mongodb,
+        devDatabaseType mongodb,
+        cacheProvider no,
+        enableHibernateCache false,
+        buildTool maven,
+        serverPort 8083,
+		messageBroker kafka,
+		languages [en,it]
+	}
+	entities Notification
+}
+
+/* Entities for Inventory */
+entity Catalog {
+	code String required
+	status CatalogStatus required
+}
+enum CatalogStatus {
+	ACTIVE, DISALBED
+}
+enum ProductType {
+  DRUG, MEDICINE, SPICE, NA
+}
+enum StorageType {
+	SHELF, STOREHOUSE, DRAWERS, REFRIGERATOR
+}
+entity ProductCode {
+	upc String required
+    barcode String
+}
+enum ProductStatus {
+    ONSALE, LOCKED, OOUTOFSTOCK, INREPLENISHMENT
+}
+entity Product {
+  	name String required
+  	description String
+  	company String
+  	type ProductType required
+    storageType StorageType required
+  	price BigDecimal required min(0)
+    salesUnit UnitOfMeasurement
+    salesQuantity BigDecimal
+  	image ImageBlob
+    status ProductStatus
+}
+entity Packaging {
+    name String required
+    quantity Integer required
+    grosWeight Double
+    netWeight Double
+    length Double
+    width Double
+    height Double
+}
+enum UnitOfMeasurement {
+    PIECE, KILOGRAM, GRAM, LITER
+}
+entity Category {
+  name String required
+  description String
+}
+relationship OneToOne {
+	Product{productCode} to ProductCode{product}
+}
+relationship OneToMany {
+  Category{product(code)} to Product{category(name)},
+  Packaging{product(code)} to Product{packaging(name)}
+}
+relationship ManyToMany {
+  Catalog{productCode} to Product{catalog}
+}
+
+service Product, ProductCode, Category,  Packaging, Catalog  with serviceClass
+paginate Product with infinite-scroll
+microservice Catalog, Product, ProductCode, Packaging, Category with inventory
+
+/* Entities for Purchasing */
+entity Location {
+	LocationNumber UUID required
+	LocationName String required
+	Location String
+	city String
+	state String
+	county String
+	phoneNumber BigDecimal required
+	pharmacyHours String required
+  type LocationType required
+}
+entity Address {
+    address1 String,
+    address2 String,
+    city String,
+    postcode String required maxlength(10),
+    country String required maxlength(2),
+    timezone String,
+    Latitude Double required,
+  	Longitude Double required
+}
+enum LocationType {
+	PHARMACY, WAREHOUSE, CLINIC, DRUGSTORE, SHOP
+}
+entity LocationOrder {
+	code UUID required
+  placedDate Instant required
+  status OrderStatus required
+  invoiceId Long
+}
+enum OrderStatus {
+  COMPLETED, PENDING, CANCELLED
+}
+entity OrderItem {
+  quantity Integer required min(0)
+  totalPrice BigDecimal required min(0)
+  status OrderItemStatus required
+}
+enum OrderItemStatus {
+  AVAILABLE, OUT_OF_STOCK, BACK_ORDER
+}
+
+relationship OneToMany {
+	LocationOrder to OrderItem{locationOrder(code)},
+	Location{order(code)} to LocationOrder{location(locationNumber)}
+}
+relationship OneToOne {
+	Location{address} to Address{location}
+}
+
+service LocationOrder, OrderItem, Location with serviceClass
+paginate Location with infinite-scroll
+microservice Location, LocationOrder, OrderItem, Address with purchasing
+
+/* Entities for notification microservice */
+entity Notification {
+  date Instant required
+  sentDate Instant required
+  format NotificationType required
+  userId Long required
+	locationNumber UUID required
+  locationCode UUID required
+	details String
+}
+enum NotificationType {
+    EMAIL, SMS, PARCEL
+}
+microservice Notification with notification

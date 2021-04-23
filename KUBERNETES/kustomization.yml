@@ -1,0 +1,29 @@
+commonLabels:
+  app.kubernetes.io/genereted-by: JHipster
+
+resources:
+  # Individual apps
+  - gateway-k8s/gateway-deployment.yml
+  - gateway-k8s/gateway-service.yml
+  - gateway-k8s/gateway-mysql.yml
+  - gateway-k8s/gateway-prometheus-sm.yml
+  - inventory-k8s/inventory-deployment.yml
+  - inventory-k8s/inventory-service.yml
+  - inventory-k8s/inventory-mysql.yml
+  - inventory-k8s/inventory-prometheus-sm.yml
+  - purchasing-k8s/purchasing-deployment.yml
+  - purchasing-k8s/purchasing-service.yml
+  - purchasing-k8s/purchasing-mysql.yml
+  - purchasing-k8s/purchasing-prometheus-sm.yml
+  # messagebroker
+  - messagebroker-k8s/kafka.yml
+  # monitoring prometheus
+  - monitoring-k8s/jhipster-prometheus-cr.yml
+  - monitoring-k8s/jhipster-prometheus-crd.yml
+  - monitoring-k8s/jhipster-grafana.yml
+  - monitoring-k8s/jhipster-grafana-dashboard.yml
+  # service discovery eureka/consul
+  - registry-k8s/jhipster-registry.yml
+  - registry-k8s/application-configmap.yml
+
+patchesJson6902:

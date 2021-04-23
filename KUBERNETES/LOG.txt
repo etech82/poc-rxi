@@ -1,0 +1,89 @@
+C:\DEV\RXI_v3\KUBERNETES>jhipster kubernetes
+INFO! Using JHipster version installed globally
+⎈ Welcome to the JHipster Kubernetes Generator ⎈
+Files will be generated in folder: C:\DEV\RXI_v3\KUBERNETES
+√ Docker is installed
+? Which *type* of application would you like to deploy? Microservice application
+? Enter the root directory where your gateway(s) and microservices are located ../
+4 applications found at C:\DEV\RXI_v3\
+
+? Which applications do you want to include in your configuration? gateway, inventory, purchasing
+? Do you want to setup monitoring for your applications ? Yes, for metrics only with Prometheus
+JHipster registry detected as the service discovery and configuration provider used by your apps
+? Enter the admin password used to secure the JHipster Registry admin
+? What should we use for the Kubernetes namespace? default
+? What should we use for the base Docker repository name? rxi
+? What command should we use for push Docker image to repository? docker push
+? Do you want to enable Istio? No
+? Choose the Kubernetes service type for your edge services LoadBalancer - Let a Kubernetes cloud provider automatically assign an IP
+? Do you want to use dynamic storage provisioning for your stateful services? No
+
+Checking Docker images in applications directories...
+ls: no such file or directory: C:/DEV/RXI_v3/inventory/target/jib-cache
+ls: no such file or directory: C:/DEV/RXI_v3/purchasing/target/jib-cache
+   create kubectl-apply.sh
+    force .yo-rc.json
+    force ..\gateway\.yo-rc.json
+    force ..\inventory\.yo-rc.json
+    force ..\notification\.yo-rc.json
+    force ..\purchasing\.yo-rc.json
+   create gateway-k8s\gateway-deployment.yml
+   create gateway-k8s\gateway-service.yml
+   create gateway-k8s\gateway-mysql.yml
+   create gateway-k8s\gateway-prometheus-sm.yml
+   create inventory-k8s\inventory-deployment.yml
+   create inventory-k8s\inventory-service.yml
+   create inventory-k8s\inventory-mysql.yml
+   create inventory-k8s\inventory-prometheus-sm.yml
+   create purchasing-k8s\purchasing-deployment.yml
+   create purchasing-k8s\purchasing-service.yml
+   create purchasing-k8s\purchasing-mysql.yml
+   create purchasing-k8s\purchasing-prometheus-sm.yml
+   create K8S-README.md
+   create messagebroker-k8s\kafka.yml
+   create monitoring-k8s\jhipster-prometheus-crd.yml
+   create monitoring-k8s\jhipster-prometheus-cr.yml
+   create monitoring-k8s\jhipster-grafana.yml
+   create monitoring-k8s\jhipster-grafana-dashboard.yml
+   create registry-k8s\jhipster-registry.yml
+   create registry-k8s\application-configmap.yml
+   create kustomization.yml
+   create skaffold.yml
+
+No change to package.json was detected. No package manager install will be executed.
+
+WARNING! Kubernetes configuration generated, but no Jib cache found
+If you forgot to generate the Docker image for this application, please run:
+To generate the missing Docker image(s), please run:
+  ./mvnw -ntp -Pprod verify jib:dockerBuild in C:\DEV\RXI_v3\inventory
+  ./mvnw -ntp -Pprod verify jib:dockerBuild in C:\DEV\RXI_v3\purchasing
+
+
+WARNING! You will need to push your image to a registry. If you have not done so, use the following commands to tag and push the images:
+  docker image tag gateway rxi/gateway
+  docker push rxi/gateway
+  docker image tag inventory rxi/inventory
+  docker push rxi/inventory
+  docker image tag purchasing rxi/purchasing
+  docker push rxi/purchasing
+
+INFO! Alternatively, you can use Jib to build and push image directly to a remote registry:
+  ./mvnw -ntp -Pprod verify jib:build -Djib.to.image=rxi/gateway in C:\DEV\RXI_v3\gateway
+  ./mvnw -ntp -Pprod verify jib:build -Djib.to.image=rxi/inventory in C:\DEV\RXI_v3\inventory
+  ./mvnw -ntp -Pprod verify jib:build -Djib.to.image=rxi/purchasing in C:\DEV\RXI_v3\purchasing
+
+You can deploy all your apps by running the following kubectl command:
+  bash kubectl-apply.sh -f
+
+[OR]
+
+If you want to use kustomize configuration, then run the following command:
+  bash kubectl-apply.sh -k
+
+Use these commands to find your application's IP addresses:
+  kubectl get svc gateway
+
+Congratulations, JHipster execution is complete!
+Sponsored with ❤️  by @oktadev.
+
+C:\DEV\RXI_v3\KUBERNETES>
