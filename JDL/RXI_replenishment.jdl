@@ -1,0 +1,32 @@
+application {
+  config {
+    baseName replenishment,
+    applicationType microservice,
+    packageName com.walgreens.rxi.rpl,
+    serviceDiscoveryType eureka,
+    authenticationType oauth2,
+    cacheProvider redis,
+    databaseType mongodb,
+    prodDatabaseType mongodb,
+    devDatabaseType mongodb,
+    buildTool maven,
+    serverPort 8190,
+    messageBroker kafka,
+    languages [en,it]
+  }
+  entities OrderManagement
+}
+
+entity OrderManagement {
+	code String required
+	locationOrder Long required
+	type OrderManagerType required
+}
+
+enum OrderManagerType {
+    MANUAL, AUTOMATION, SUGGESTED, AI, ML
+}
+
+service OrderManagement with serviceClass
+paginate OrderManagement with infinite-scroll
+microservice OrderManagement with replenishment

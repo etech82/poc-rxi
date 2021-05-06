@@ -24,14 +24,7 @@
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
-    <loaded-nodes>
-      <connection connection-id="e33c7c22-05c4-4a5d-b3fe-ef592f5a446c">
-        <schema name="inventory" object-types="table, view" />
-      </connection>
-      <connection connection-id="7c78eb91-2734-4d47-8751-047edf49f5a4">
-        <schema name="purchasing" object-types="table, view" />
-      </connection>
-    </loaded-nodes>
+    <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="e33c7c22-05c4-4a5d-b3fe-ef592f5a446c">

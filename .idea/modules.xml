@@ -7,6 +7,7 @@
       <module fileurl="file://$PROJECT_DIR$/inventory/inventory.iml" filepath="$PROJECT_DIR$/inventory/inventory.iml" />
       <module fileurl="file://$PROJECT_DIR$/notification/notification.iml" filepath="$PROJECT_DIR$/notification/notification.iml" />
       <module fileurl="file://$PROJECT_DIR$/purchasing/purchasing.iml" filepath="$PROJECT_DIR$/purchasing/purchasing.iml" />
+      <module fileurl="file://$PROJECT_DIR$/replenishment/replenishment.iml" filepath="$PROJECT_DIR$/replenishment/replenishment.iml" />
     </modules>
   </component>
 </project>

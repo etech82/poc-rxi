@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archimate:model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:archimate="http://www.archimatetool.com/archimate" name="PoC-RxI" id="id-b5216aa1b09748a2b17b11367cb50803" version="4.6.0">
+  <folder name="Strategy" id="id-d22d3b3bf9fd47d8903b91c5ff99ecf8" type="strategy"/>
+  <folder name="Business" id="id-b9b350be209f4df689e7c648b6f75a6c" type="business">
+    <folder name="Inventory" id="id-8c227c6f5a8140aca65ebbb95e2dd41f"/>
+    <folder name="Purchasing" id="id-fd5f7d67f18a4e9eb4010dcc1f98d29a"/>
+    <folder name="Forcasting" id="id-87e6d52625ab44e0b41b7ebeb7a93701"/>
+    <folder name="Marketing" id="id-f9e3f63e584644e59fc3c7bc1c961f1f"/>
+    <folder name="Governance" id="id-07128882c68348368e4aa95ba9f8bef8"/>
+  </folder>
+  <folder name="Application" id="id-525a57c8863c4e10965aeacabccb1989" type="application">
+    <element xsi:type="archimate:ApplicationComponent" name="Customer Data Access" id="id-666f84408aa14dcb907f5e18cccf6911"/>
+    <element xsi:type="archimate:ApplicationComponent" name="Policy Data Management" id="id-44a1a8a40797400f9687d28eb0a89b84"/>
+    <element xsi:type="archimate:ApplicationComponent" name="Claim Data Management" id="id-863989c7f706478a9c2cf6715dee0e54"/>
+    <element xsi:type="archimate:ApplicationComponent" name="Location Manager" id="id-e79ec1fdc63c4c93b785b922c2acba10"/>
+    <element xsi:type="archimate:ApplicationComponent" name="Inventory Service" id="id-ff693e0eff494e09a6e0a53997b8e4f6"/>
+    <element xsi:type="archimate:ApplicationComponent" name="Purchasing Service" id="id-1efca31e1d2d4803834f7ccdb5f46cde"/>
+  </folder>
+  <folder name="Technology &amp; Physical" id="id-c2ced9461e7547e0bca0cda7165121df" type="technology"/>
+  <folder name="Motivation" id="id-9360d256647647749d22b76edf562367" type="motivation"/>
+  <folder name="Implementation &amp; Migration" id="id-e56ef42de15543e2b903c86bb0eb9bf0" type="implementation_migration"/>
+  <folder name="Other" id="id-2608d915151c4f9cbe9d9921201cc6fa" type="other">
+    <folder name="PNG" id="id-8c9cacf9389746da812da64515c5cdc9"/>
+    <folder name="PUML" id="id-462a90ea6b2e4d658b44bf97be051aa6"/>
+    <element xsi:type="archimate:Location" name="Location" id="id-41f4af859e444f1b8bb82eef40047e89"/>
+  </folder>
+  <folder name="Relations" id="id-1fdceaf667364aca98a1e0ee3bb89287" type="relations"/>
+  <folder name="Views" id="id-0aa2c7eab46b4045b15a94ea823f404f" type="diagrams">
+    <element xsi:type="archimate:ArchimateDiagramModel" name="PoC-RxI" id="id-f6dba2ad77474c6e8f6f36ec9d4efb09"/>
+    <element xsi:type="archimate:SketchModel" name="Team Collaboration" id="id-c0970f69d74740798cefb7b7990e6e9f">
+      <child xsi:type="archimate:SketchModelActor" id="id-dae0906c3b714bce9f55f233d06d295f" name="DEV">
+        <bounds x="180" y="336" width="75" height="100"/>
+      </child>
+      <child xsi:type="archimate:SketchModelActor" id="id-f0eeecd17763470aa391e7c184082360" name="DevOps">
+        <bounds x="648" y="336" width="75" height="100"/>
+      </child>
+      <child xsi:type="archimate:SketchModelActor" id="id-179edde80f3a4d8b92ad95499be51af7" name="Architect">
+        <bounds x="423" y="336" width="75" height="100"/>
+      </child>
+      <child xsi:type="archimate:Group" id="id-da429e7e90d7467a96aa5a7a3a9465d2" name="DEV" textAlignment="1">
+        <bounds x="24" y="24" width="400" height="140"/>
+      </child>
+      <child xsi:type="archimate:Group" id="id-255b74e6a53142a4a9eaa5765114bfb1" name="CLOUD" textAlignment="1">
+        <bounds x="876" y="36" width="400" height="140"/>
+      </child>
+      <child xsi:type="archimate:SketchModelActor" id="id-e664093331074379b7bea6301a129419" name="Delivery Manager">
+        <bounds x="1104" y="336" width="123" height="100"/>
+      </child>
+    </element>
+    <element xsi:type="archimate:ArchimateDiagramModel" name="Application Behaviour" id="id-aa115b3186354f598ecf9ce3861522d8"/>
+    <element xsi:type="archimate:ArchimateDiagramModel" name="Application Structure" id="id-39d643c03348444a848f8468d1caff27"/>
+    <element xsi:type="archimate:ArchimateDiagramModel" name="Business Function" id="id-63cec3d4b7b54466a7ba018858e0d30f"/>
+    <element xsi:type="archimate:ArchimateDiagramModel" name="Business Process" id="id-c0093668d9a54c5189c1cce38677be29">
+      <child xsi:type="archimate:DiagramObject" id="id-fdbed30bc88640868e06b4ce23c7b324" archimateElement="id-44a1a8a40797400f9687d28eb0a89b84">
+        <bounds x="227" y="240" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-891b2d18a8bb41abbd1329036516263a" archimateElement="id-666f84408aa14dcb907f5e18cccf6911">
+        <bounds x="227" y="72" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-8293d79de2614cfa82ecf384857bc7e7" archimateElement="id-863989c7f706478a9c2cf6715dee0e54">
+        <bounds x="227" y="156" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-ecad223c608549c4a4992229c204862d" archimateElement="id-e79ec1fdc63c4c93b785b922c2acba10">
+        <bounds x="564" y="72" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-41ecab90de3649ca96a3487986f4d3bc" archimateElement="id-ff693e0eff494e09a6e0a53997b8e4f6">
+        <bounds x="396" y="72" width="120" height="55"/>
+      </child>
+      <child xsi:type="archimate:DiagramObject" id="id-045538b5127c47f7b9996318a0f863df" archimateElement="id-1efca31e1d2d4803834f7ccdb5f46cde">
+        <bounds x="396" y="156" width="120" height="55"/>
+      </child>
+      <property key="GDPR" value="General Data Protection Regulation"/>
+    </element>
+  </folder>
+</archimate:model>

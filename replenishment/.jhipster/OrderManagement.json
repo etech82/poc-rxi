@@ -1,0 +1,35 @@
+{
+  "name": "OrderManagement",
+  "fields": [
+    {
+      "fieldName": "code",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "locationOrder",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "OrderManagerType",
+      "fieldValues": "MANUAL,AUTOMATION,SUGGESTED,AI,ML",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [],
+  "entityTableName": "order_management",
+  "dto": "no",
+  "pagination": "infinite-scroll",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["replenishment"],
+  "microserviceName": "replenishment",
+  "clientRootFolder": "replenishment",
+  "databaseType": "mongodb",
+  "changelogDate": "20210506073429"
+}

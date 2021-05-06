@@ -1,8 +1,4 @@
 
-;
-JDL/RXI.jdl,6\e\6e7b00bfed7b1137f591b3227fc6c16d6cf6f33f
-H
-DOCs/README-INSTALLATION,2\5\251b749b9f704eb2cb83945ac367a18cbffacf21
 a
 1gateway/src/main/resources/config/application.yml,a\5\a572f5083969ef4c715b48eea8f43ef434b9de0c
 f
@@ -63,11 +59,13 @@ Qpurchasing/src/main/docker/central-server-config/localhost-config/application.y
 Npurchasing/src/main/docker/central-server-config/docker-config/application.yml,3\8\38da0d14ac3d74f4681effd5a6a2934388b75f5a
 R
 "purchasing/src/main/docker/app.yml,4\d\4d830e0048325e6ce01101f48fd5508cb1f193f5
-W
-'DOCKER-COMPOSE/README-DOCKER-COMPOSE.md,4\5\45fd0e017e54774d0ee2a13e643b8e2cb23aaf17
 _
 /DOCKER-COMPOSE/realm-config/jhipster-realm.json,a\5\a5c77dcd19174cff33d241f28c21b6e5fc11eadf
 a
 1DOCKER-COMPOSE/realm-config/jhipster-users-0.json,7\e\7ebcb4710b60d2acf44192fcc585c82a9af50827
-d
-4DOCKER-COMPOSE/central-server-config/application.yml,6\f\6f2b312f17de02c8946aa72cb33a97688e2f1914
+E
+DOCs/AzureDevOps.puml,e\b\eb30279eeb5426591f52a7e7384726236a82abb1
+O
+DOCs/Architecture-Microservices,2\5\25621ab1113411d4b299b2710840670b74b307fc
+C
+DOCs/Engineering.md,2\c\2ce6342c417747d5be251fa45b55587ef97f702e
